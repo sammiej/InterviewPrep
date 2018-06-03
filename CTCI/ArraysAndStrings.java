@@ -1,16 +1,9 @@
 package CTCI;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 /**
  * Created by sammiej on 5/10/18
  */
 public class ArraysAndStrings {
-
-    public static void main(String[] args) {
-        System.out.println(isPalindromePermutation("taco catds"));
-    }
 
     public static boolean isUnique(String myString) {
         if(myString == null || myString.length() > 128) {
@@ -46,10 +39,12 @@ public class ArraysAndStrings {
         return true;
     }
 
-    public void URLify(char[] sArray, int trulen) {
+    public static String URLify(String string, int trulen) {
         int index;
 
+        char[] sArray = string.toCharArray();
         index = sArray.length-1;
+
         for(int j=trulen - 1; j>=0; j--) {
             if(sArray[j] == ' ') {
                 sArray[index] = '0';
@@ -61,6 +56,7 @@ public class ArraysAndStrings {
                 index--;
             }
         }
+        return new String(sArray);
     }
 
     public static boolean isPalindromePermutation(String s) {
@@ -84,5 +80,30 @@ public class ArraysAndStrings {
         return true;
     }
 
+    public static boolean isOneAway(String string1, String string2) {
+        boolean oneAway = false;
+
+        if(Math.abs(string1.length() - string2.length()) > 1) return false;
+
+        String longer = string1.length() >= string2.length() ? string1 : string2;
+        String shorter = string1.length() < string2.length() ? string1 : string2;
+
+        int longIndex = 0;
+        int shortIndex = 0;
+
+        while(longIndex < longer.length() && shortIndex < shorter.length()) {
+            if (longer.charAt(longIndex) != shorter.charAt(shortIndex)) {
+                if (oneAway) return false;
+
+                if (longer.length() == shorter.length()) shortIndex++;
+                oneAway = true;
+            } else {
+                shortIndex++;
+            }
+            longIndex++;
+        }
+
+        return oneAway;
+    }
 
 }
