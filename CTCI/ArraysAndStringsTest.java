@@ -2,9 +2,6 @@ package CTCI;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class ArraysAndStringsTest {
@@ -35,5 +32,17 @@ public class ArraysAndStringsTest {
     public void isOneAway() {
         assertTrue(ArraysAndStrings.isOneAway("pale", "ple"));
         assertFalse(ArraysAndStrings.isOneAway("pale", "bake"));
+    }
+
+    @Test
+    public void stringCompression() {
+        assertEquals("a2b1c5a3", ArraysAndStrings.stringCompression("aabcccccaaa"));
+        assertEquals("abcd", ArraysAndStrings.stringCompression("abcd"));
+    }
+
+    @Test
+    public void stringRotation() {
+        assertTrue(ArraysAndStrings.stringRotation("waterbottle", "erbottlewat"));
+        assertFalse(ArraysAndStrings.stringRotation("abcabcabc", "bcabcabc"));
     }
 }

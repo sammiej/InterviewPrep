@@ -106,4 +106,33 @@ public class ArraysAndStrings {
         return oneAway;
     }
 
+    public static String stringCompression(String myString) {
+        StringBuilder sb = new StringBuilder();
+
+        int charCount = 1;
+
+        sb.append(myString.charAt(0));
+
+        for(int i = 1; i < myString.length(); i++) {
+            if(myString.charAt(i) == myString.charAt(i-1)) {
+                charCount++;
+            } else {
+                sb.append(charCount);
+                sb.append(myString.charAt(i));
+                charCount = 1;
+            }
+        }
+        sb.append(charCount);
+
+        if(sb.length() == myString.length() * 2) return myString;
+
+        return sb.toString();
+    }
+
+    public static boolean stringRotation(String string1, String string2) {
+        if(string1.length() != string2.length() || string1.length() == 0) return false;
+
+        String concat = string2.concat(string2);
+        return concat.contains(string1);
+    }
 }
